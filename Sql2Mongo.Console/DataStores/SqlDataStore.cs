@@ -18,7 +18,7 @@ namespace Sql2Mongo.Command
             throw new NotImplementedException();
         }
 
-        public void Insert<T>(T obj)
+        public void Insert(object obj)
         {
             throw new NotImplementedException();
         }

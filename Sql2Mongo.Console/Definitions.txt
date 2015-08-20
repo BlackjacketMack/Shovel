@@ -1,14 +1,15 @@
 ﻿[
 	{
 		"Name":"My First Definition",
-		
 		"SourceDataStore":{
 			"DataStoreType":"SqlDataStore",
 			"ConnectionStringName":"Hi"
 			},
 		"DestinationDataStore":{
 			"DataStoreType":"MongoDataStore",
-			"ConnectionStringName":"Hi"
+			"ConnectionStringName":"MongoDb",
+			"DatabaseName":"testdb",
+			"CollectionName":"Sql2MongoStuff"
 			}
 	}
 ]

@@ -24,6 +24,11 @@ namespace Sql2Mongo.Command
 
             //sql2Mongo.Process(null);
 
+            foreach (var definition in definitions)
+            {
+                processDefinition(definition);
+            }
+
 
             Console.Write("ok");
             Console.ReadLine();
@@ -39,39 +44,14 @@ namespace Sql2Mongo.Command
 
             return definitions;
         }
-    }
 
-    public class DefinitionConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
+        private static void processDefinition(Definition definition)
         {
-            var b = objectType == typeof(IDataStore);
-            
-            return b;
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            var newSerializer = new JsonSerializer();
-
-            var dictionary = newSerializer.Deserialize<SqlDataStore>(reader);
-
-            var dataStore = newSerializer.Deserialize<SqlDataStore>(reader);
-
-            return dataStore;
-            //return new SqlDataStore();
-        }
-
-        public override bool CanWrite
-        {
-            get { return false; }
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
+            var definitionProcessor = new DefinitionProcessor(definition);
+            definitionProcessor.Process();
         }
     }
+
 
     //public class DataSourceConverter : JsonConverter
     //{

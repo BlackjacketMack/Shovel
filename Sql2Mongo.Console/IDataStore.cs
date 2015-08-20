@@ -16,6 +16,6 @@ namespace Sql2Mongo.Command
         string ConnectionStringName { get; set; }
         DataStoreTypes DataStoreType { get; set; }
         IEnumerable<T> Get<T>();
-        void Insert<T>(T obj);
+        void Insert(object obj);
     }
 }

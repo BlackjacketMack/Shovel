@@ -63,6 +63,8 @@
     <Compile Include="DataStores\MongoDataStore.cs" />
     <Compile Include="DataStores\BaseDataStore.cs" />
     <Compile Include="DataStoreTypes.cs" />
+    <Compile Include="DefinitionProcessor.cs" />
+    <Compile Include="DefinitionConverter.cs" />
     <Compile Include="IDataStore.cs" />
     <Compile Include="IDefinition.cs" />
     <Compile Include="DataStores\SqlDataStore.cs" />
