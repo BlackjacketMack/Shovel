@@ -13,7 +13,8 @@ namespace Sql2Mongo.Command
 {
     internal interface IDataStore
     {
-        string ConnectionString { get; set; }
+        string ConnectionStringName { get; set; }
+        DataStoreTypes DataStoreType { get; set; }
         IEnumerable<T> Get<T>();
         void Insert<T>(T obj);
     }

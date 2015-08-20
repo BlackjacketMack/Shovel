@@ -8,14 +8,21 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Bson.IO;
 using MongoDB.Bson;
+using Newtonsoft.Json;
 
 namespace Sql2Mongo.Command
 {
-    internal interface IDefinition
+    internal class Definition
     {
-        string Name { get; set; }
+        public string Name { get; set; }
 
-        IDataStore SourceDataStore { get;}
-        IDataStore DestinationDataStore { get;}
+        public IDataStore SourceDataStore { get; set; }
+
+        public IDataStore DestinationDataStore { get; set; }
+
+        public Definition()
+        {
+
+        }
     }
 }

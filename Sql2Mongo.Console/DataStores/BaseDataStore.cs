@@ -11,11 +11,12 @@ using MongoDB.Bson;
 
 namespace Sql2Mongo.Command
 {
-    internal interface IDefinition
+    /// <summary>
+    /// Can't be abstract because we deserialize to this type.
+    /// </summary>
+    internal class BaseDataStore
     {
-        string Name { get; set; }
-
-        IDataStore SourceDataStore { get;}
-        IDataStore DestinationDataStore { get;}
+        public DataStoreTypes DataStoreType { get; set; }
+        public string ConnectionStringName { get; set; }
     }
 }

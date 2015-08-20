@@ -1,0 +1,14 @@
+﻿[
+	{
+		"Name":"My First Definition",
+		
+		"SourceDataStore":{
+			"DataStoreType":"SqlDataStore",
+			"ConnectionStringName":"Hi"
+			},
+		"DestinationDataStore":{
+			"DataStoreType":"MongoDataStore",
+			"ConnectionStringName":"Hi"
+			}
+	}
+]

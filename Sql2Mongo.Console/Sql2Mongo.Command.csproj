@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataStores\MongoDataStore.cs" />
+    <Compile Include="DataStores\BaseDataStore.cs" />
     <Compile Include="DataStoreTypes.cs" />
     <Compile Include="IDataStore.cs" />
     <Compile Include="IDefinition.cs" />
