@@ -4,6 +4,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Reflection;
+using MongoDB.Bson.Serialization;
+using MongoDB.Driver;
+using MongoDB.Bson.IO;
+using MongoDB.Bson;
 
 namespace Sql2Mongo.Command
 {
@@ -18,13 +22,13 @@ namespace Sql2Mongo.Command
 
             var properties = !items.Any() ? Enumerable.Empty<PropertyInfo>() : items.First().GetType().GetProperties().Cast<PropertyInfo>();
 
-            var itemsFiltered = items.Select(s => getJsonDoc(s, def, properties));
+            var itemsConvertedToJson = items.Select(s => getJsonDoc(s, def, properties));
 
-            Console.Write(String.Concat(itemsFiltered));
+            insertMongo(itemsConvertedToJson);
+
+            Console.Write(String.Concat(itemsConvertedToJson));
             Console.ReadLine();
         }
-
-
 
         private static string getJsonDoc(object obj, string definition, IEnumerable<PropertyInfo> properties)
         {
@@ -42,6 +46,19 @@ namespace Sql2Mongo.Command
             }
 
             return json;
+        }
+
+        private static async void insertMongo(IEnumerable<string> json)
+        {
+            var mongoClient = new MongoClient("mongodb://localhost:27017");
+            var db = mongoClient.GetDatabase("testdb");
+            var collection = db.GetCollection<BsonDocument>("Sql2MongoStuff");
+
+            foreach (var jsonFile in json)
+            {
+                var bsonDoc = BsonDocument.Parse(jsonFile);
+                await collection.InsertOneAsync(bsonDoc);
+            }
         }
     }
 }
