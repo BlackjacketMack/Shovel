@@ -8,57 +8,25 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Bson.IO;
 using MongoDB.Bson;
+using System.IO;
 
-namespace Sql2Mongo.Command
+
+using System.Configuration;namespace Sql2Mongo.Command
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
+            var sql2Mongo = new Sql2Mongo();
 
-            var def = "{User:{UserID:@UserID,UserName:\"@UserName\"}}";
 
-            var items = new[] { new{UserID=4,UserName="Rob"} };
+            var definition = File.ReadAllText(ConfigurationManager.AppSettings["DefinitionFile"]);
 
-            var properties = !items.Any() ? Enumerable.Empty<PropertyInfo>() : items.First().GetType().GetProperties().Cast<PropertyInfo>();
+            sql2Mongo.Process(null);
 
-            var itemsConvertedToJson = items.Select(s => getJsonDoc(s, def, properties));
 
-            insertMongo(itemsConvertedToJson);
-
-            Console.Write(String.Concat(itemsConvertedToJson));
+            Console.Write("ok");
             Console.ReadLine();
-        }
-
-        private static string getJsonDoc(object obj, string definition, IEnumerable<PropertyInfo> properties)
-        {
-            var json = definition;
-
-            foreach (var prop in properties)
-            {
-                var val = prop.GetValue(obj);
-                json = json.Replace("@" + prop.Name, val.ToString());
-            }
-
-            if (json.Equals(definition))
-            {
-                throw new ApplicationException("No transformation occurred.");
-            }
-
-            return json;
-        }
-
-        private static async void insertMongo(IEnumerable<string> json)
-        {
-            var mongoClient = new MongoClient("mongodb://localhost:27017");
-            var db = mongoClient.GetDatabase("testdb");
-            var collection = db.GetCollection<BsonDocument>("Sql2MongoStuff");
-
-            foreach (var jsonFile in json)
-            {
-                var bsonDoc = BsonDocument.Parse(jsonFile);
-                await collection.InsertOneAsync(bsonDoc);
-            }
         }
     }
 }
