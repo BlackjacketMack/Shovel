@@ -80,7 +80,14 @@ namespace Shovel.Command
 
         private static void processDefinition(Definition definition)
         {
-            var definitionProcessor = new DefinitionProcessor(definition, new Communicator());
+            var logFile = ConfigurationManager.AppSettings["LogFile"];
+            if (logFile == null) throw new ApplicationException("LogFile not specified.");
+
+            logFile = Path.GetFullPath(logFile);
+
+            var logger = new Logger(logFile);
+
+            var definitionProcessor = new DefinitionProcessor(definition, logger);
             definitionProcessor.Process();
         }
     }

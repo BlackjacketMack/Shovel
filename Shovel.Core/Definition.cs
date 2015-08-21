@@ -12,6 +12,7 @@ namespace Shovel.Core
         public string Name { get; set; }
         public int BatchSize { get; set; }
         public int MaxDegreeOfParallelism { get; set; }
+        public bool LoggingEnabled { get; set; }
 
         public IDataStore SourceDataStore { get; set; }
 

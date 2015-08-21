@@ -3,6 +3,7 @@
         "Name": "My First Definition",
         "BatchSize": 100,
         "MaxDegreeOfParallelism": 3,
+        "LoggingEnabled": true,
 
         "SourceDataStore": {
             "DataStoreType": "SqlDataStore",

@@ -79,7 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Communicator.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="DefinitionConverter.cs" />
     <Compile Include="Shovel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,7 +91,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Definitions.json" />
+    <Content Include="ShovelDefinitions.json" />
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>

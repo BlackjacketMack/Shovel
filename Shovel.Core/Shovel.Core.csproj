@@ -45,7 +45,7 @@
     <Compile Include="DataStoreTypes.cs" />
     <Compile Include="Definition.cs" />
     <Compile Include="DefinitionProcessor.cs" />
-    <Compile Include="ICommunicator.cs" />
+    <Compile Include="ILogger.cs" />
     <Compile Include="IDataStore.cs" />
     <Compile Include="IDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
