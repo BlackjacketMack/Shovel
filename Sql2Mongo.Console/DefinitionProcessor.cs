@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Sql2Mongo.Command
+namespace Shovel.Command
 {
     internal class DefinitionProcessor
     {

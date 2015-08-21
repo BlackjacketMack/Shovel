@@ -9,7 +9,7 @@ using System.IO;
 
 using System.Configuration;
 using Newtonsoft.Json;
-namespace Sql2Mongo.Command
+namespace Shovel.Command
 {
     public class Program
     {

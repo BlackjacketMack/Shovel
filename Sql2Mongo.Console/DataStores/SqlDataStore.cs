@@ -11,7 +11,7 @@ using MongoDB.Bson;
 using Dapper;
 using System.Data.SqlClient;
 
-namespace Sql2Mongo.Command
+namespace Shovel.Command
 {
     internal class SqlDataStore : BaseDataStore, IDataStore
     {

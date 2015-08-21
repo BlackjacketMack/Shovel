@@ -9,7 +9,7 @@ using MongoDB.Driver;
 using MongoDB.Bson.IO;
 using MongoDB.Bson;
 
-namespace Sql2Mongo.Command
+namespace Shovel.Command
 {
     internal interface IDefinition
     {

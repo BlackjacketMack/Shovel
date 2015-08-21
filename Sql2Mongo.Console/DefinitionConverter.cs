@@ -7,7 +7,7 @@ using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Sql2Mongo.Command
+namespace Shovel.Command
 {
     public class DefinitionConverter : JsonConverter
     {

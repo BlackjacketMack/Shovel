@@ -10,7 +10,7 @@ using MongoDB.Bson.IO;
 using MongoDB.Bson;
 using Newtonsoft.Json;
 
-namespace Sql2Mongo.Command
+namespace Shovel.Command
 {
     /// <summary>
     /// Used to transmit messages back to calling processes.

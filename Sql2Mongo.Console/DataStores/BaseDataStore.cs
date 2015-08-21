@@ -10,7 +10,7 @@ using MongoDB.Bson.IO;
 using MongoDB.Bson;
 using System.Configuration;
 
-namespace Sql2Mongo.Command
+namespace Shovel.Command
 {
     /// <summary>
     /// Can't be abstract because we deserialize to this type.

@@ -10,7 +10,7 @@ using System.Configuration;
 using Newtonsoft.Json;
 using MongoDB.Bson;
 
-namespace Sql2Mongo.Command
+namespace Shovel.Command
 {
     internal class MongoDataStore : BaseDataStore, IDataStore
     {
