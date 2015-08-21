@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 using Shovel.Core;
 namespace Shovel.Command
 {
-    public class Program
+    public class Shovel
     {
         static void Main(string[] args)
         {
@@ -29,7 +29,7 @@ namespace Shovel.Command
             }
             
 
-            Console.WriteLine("Are you ready?");
+            Console.WriteLine("Y'all ready for this?");
             Console.ReadLine();
 
 

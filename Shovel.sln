@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shovel.Command", "Sql2Mongo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shovel.Core", "Shovel.Core\Shovel.Core.csproj", "{59E65774-BB0B-4D35-8418-96DFF1C835E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shovel.DataStores", "Shovel.Providers\Shovel.DataStores.csproj", "{E67E3F0E-DAA9-4017-8AED-3E3A0A404AF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{59E65774-BB0B-4D35-8418-96DFF1C835E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59E65774-BB0B-4D35-8418-96DFF1C835E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59E65774-BB0B-4D35-8418-96DFF1C835E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E67E3F0E-DAA9-4017-8AED-3E3A0A404AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E67E3F0E-DAA9-4017-8AED-3E3A0A404AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E67E3F0E-DAA9-4017-8AED-3E3A0A404AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E67E3F0E-DAA9-4017-8AED-3E3A0A404AF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

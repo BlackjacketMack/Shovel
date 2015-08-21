@@ -13,7 +13,7 @@ using Shovel.Core;
 
 namespace Shovel.Command
 {
-    internal class MongoDataStore : BaseDataStore, IDataStore
+    public class MongoDataStore : BaseDataStore, IDataStore
     {
         public string DatabaseName { get; set; }
         public string CollectionName { get; set; }

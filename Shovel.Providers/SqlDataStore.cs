@@ -14,7 +14,7 @@ using Shovel.Core;
 
 namespace Shovel.Command
 {
-    internal class SqlDataStore : BaseDataStore, IDataStore
+    public class SqlDataStore : BaseDataStore, IDataStore
     {
         public long ExportCountTotal()
         {

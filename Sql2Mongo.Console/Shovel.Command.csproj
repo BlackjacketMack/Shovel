@@ -79,12 +79,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataStores\MongoDataStore.cs" />
-    <Compile Include="DataStores\BaseDataStore.cs" />
     <Compile Include="Communicator.cs" />
-    <Compile Include="DataStores\SqlDataStore.cs" />
     <Compile Include="DefinitionConverter.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Shovel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +115,10 @@
     <ProjectReference Include="..\Shovel.Core\Shovel.Core.csproj">
       <Project>{59e65774-bb0b-4d35-8418-96dff1c835e3}</Project>
       <Name>Shovel.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shovel.Providers\Shovel.DataStores.csproj">
+      <Project>{e67e3f0e-daa9-4017-8aed-3e3a0a404af6}</Project>
+      <Name>Shovel.DataStores</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

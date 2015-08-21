@@ -16,7 +16,7 @@ namespace Shovel.Command
     /// <summary>
     /// Can't be abstract because we deserialize to this type.
     /// </summary>
-    internal abstract class BaseDataStore
+    public abstract class BaseDataStore
     {
         public DataStoreTypes DataStoreType { get; set; }
         public string ConnectionStringName { get; set; }
