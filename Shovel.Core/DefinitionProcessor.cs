@@ -46,7 +46,7 @@ namespace Shovel.Core
             
             _definition.DestinationDataStore.Import(objs);
 
-            _processedRecords += _definition.BatchSize;
+            _processedRecords += objs.Count();
 
             _communicator.Write("\r Records Processed:" + _processedRecords);
         }
