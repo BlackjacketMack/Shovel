@@ -37,13 +37,9 @@ namespace Sql2Mongo.Command
 
         public IEnumerable<object> Export(long startRow, long maxRows)
         {
-            var exportSql = "SELECT * FROM (" + this.ExportQuery + ") t ORDER BY 1 OFFSET " + startRow + " ROWS FETCH NEXT " + maxRows + " ROWS ONLY";
+            var exportSql = "SELECT * FROM (" + this.ExportQuery + ") t ORDER BY 1 OFFSET @startRow ROWS FETCH NEXT @maxRows ROWS ONLY";
 
-            IEnumerable<object> q;
-            using (var dbConnection = new SqlConnection(this.GetConnectionString()))
-            {
-                q = dbConnection.Query(exportSql).ToList();
-            }
+            var q = query(exportSql, new { startRow, maxRows });
 
             return q;
         }
