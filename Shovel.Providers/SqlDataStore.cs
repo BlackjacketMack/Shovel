@@ -16,6 +16,8 @@ namespace Shovel.Command
 {
     public class SqlDataStore : BaseDataStore, IDataStore
     {
+        public bool ReadUncommitted { get; set; }
+
         public long ExportCountTotal()
         {
             var countSql = "SELECT Count_Big(*) AS ExportCount FROM (" + this.ExportQuery + ") t";
@@ -39,6 +41,11 @@ namespace Shovel.Command
         public IEnumerable<object> Export(long startRow, long maxRows)
         {
             var exportSql = "SELECT * FROM (" + this.ExportQuery + ") t ORDER BY 1 OFFSET @startRow ROWS FETCH NEXT @maxRows ROWS ONLY";
+
+            if (this.ReadUncommitted)
+            {
+                exportSql = "SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED " + exportSql;
+            }
 
             var q = query(exportSql, new { startRow, maxRows });
 
