@@ -7,7 +7,6 @@
         "SourceDataStore": {
             "DataStoreType": "SqlDataStore",
             "ConnectionStringName": "SqlServerConn",
-            "ReadUncommitted": true,
 
 
             //this is the query that will be called against the source datastore.
