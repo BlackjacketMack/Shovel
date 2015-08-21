@@ -46,7 +46,7 @@ namespace Sql2Mongo.Command
             }
 
             var task = collection.InsertManyAsync(bsons);
-            task.Wait();
+            //task.Wait();
         }
 
 

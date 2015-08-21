@@ -19,7 +19,7 @@
 
 
             "DatabaseName": "testdb",
-            "CollectionName": "testexport",
+            "CollectionName": "testevents",
 
             //with mongo db, if you don't specify an import query
             //the datastore will simply serialize the given object.
