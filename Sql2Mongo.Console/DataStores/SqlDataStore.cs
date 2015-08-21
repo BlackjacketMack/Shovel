@@ -15,7 +15,6 @@ namespace Sql2Mongo.Command
 {
     internal class SqlDataStore : BaseDataStore, IDataStore
     {
-        public string ExportQuery { get; set; }
         public long ExportCountTotal()
         {
             var countSql = "SELECT Count_Big(*) AS ExportCount FROM (" + this.ExportQuery + ") t";

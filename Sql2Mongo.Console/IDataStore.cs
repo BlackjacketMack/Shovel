@@ -15,11 +15,14 @@ namespace Sql2Mongo.Command
     {
         string ConnectionStringName { get; set; }
         DataStoreTypes DataStoreType { get; set; }
+
         //exporting
         IEnumerable<object> Export();
         long ExportCountTotal();
+        string ExportQuery { get; set; }
 
         //importing
         void Import(object obj);
+        string ImportQuery { get; set; }
     }
 }

@@ -19,6 +19,9 @@ namespace Sql2Mongo.Command
     {
         public DataStoreTypes DataStoreType { get; set; }
         public string ConnectionStringName { get; set; }
+        public string ExportQuery { get; set; }
+        public string ImportQuery { get; set; }
+
 
         public string GetConnectionString()
         {

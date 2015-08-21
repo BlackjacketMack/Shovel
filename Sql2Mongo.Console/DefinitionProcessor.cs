@@ -21,6 +21,8 @@ namespace Sql2Mongo.Command
 
         public void Process()
         {
+            _communicator.WriteLine("Beginning process: Source " + _definition.SourceDataStore.ConnectionStringName + ", Destination " + _definition.DestinationDataStore.ConnectionStringName);
+
             var exportCount = _definition.SourceDataStore.ExportCountTotal();
             _communicator.WriteLine(exportCount + " records to export.");
 

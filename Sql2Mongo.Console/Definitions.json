@@ -1,17 +1,28 @@
 ﻿[
-	{
-		"Name":"My First Definition",
-		"SourceDataStore":{
-			"DataStoreType":"SqlDataStore",
-			"ConnectionStringName":"SqlServerConn",
-			"ExportQuery":"SELECT * FROM Application.Events"
-			},
-		"DestinationDataStore":{
-			"DataStoreType":"MongoDataStore",
-			"ConnectionStringName":"MongoDbConn",
-			"DatabaseName":"testdb",
+    {
+        "Name": "My First Definition",
+        "SourceDataStore": {
+            "DataStoreType": "SqlDataStore",
+            "ConnectionStringName": "SqlServerConn",
+
+            //this is the query that will be called against the source datastore.
+            //should be ordered the same way every time
+            "ExportQuery": "SELECT * FROM Application.Events"
+        },
+        "DestinationDataStore": {
+            "DataStoreType": "MongoDataStore",
+            "ConnectionStringName": "MongoDbConn",
+
+
+            "DatabaseName": "testdb",
             "CollectionName": "Sql2MongoStuff",
-            "ExportQuery":"SELECT * FROM Application.Events"
-			}
-	}
+
+            //with mongo db, if you don't specify an import query
+            //the datastore will simply serialize the given object.
+            //if you need to transform the object at all, provide
+            //an 'importquery' value with @propertyName for the fields
+            //(e.g. {Foo:{FooName:"@propertyName"}}
+            "ImportQuery": null
+        }
+    }
 ]

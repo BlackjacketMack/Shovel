@@ -43,8 +43,5 @@ namespace Sql2Mongo.Command
             var bson = BsonDocument.Parse(objSerialized);
             await collection.InsertOneAsync(bson);
         }
-
-
-        
     }
 }
