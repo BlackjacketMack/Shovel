@@ -18,6 +18,7 @@ namespace Sql2Mongo.Command
     /// </summary>
     internal interface ICommunicator
     {
+        void Write(string message);
         void WriteLine(string message);
     }
 }

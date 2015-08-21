@@ -15,6 +15,7 @@ namespace Sql2Mongo.Command
     internal class Definition
     {
         public string Name { get; set; }
+        public int BatchSize { get; set; }
 
         public IDataStore SourceDataStore { get; set; }
 

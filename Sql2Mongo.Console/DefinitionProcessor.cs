@@ -24,14 +24,25 @@ namespace Sql2Mongo.Command
             _communicator.WriteLine("Beginning process: Source " + _definition.SourceDataStore.ConnectionStringName + ", Destination " + _definition.DestinationDataStore.ConnectionStringName);
 
             var exportCount = _definition.SourceDataStore.ExportCountTotal();
-            _communicator.WriteLine(exportCount + " records to export.");
+            
 
-            var objs = _definition.SourceDataStore.Export(1, 10);
+            var batches = Math.Ceiling((double)exportCount / _definition.BatchSize);
 
-            //foreach (var obj in objs)
-            //{
-            //    _definition.DestinationDataStore.Import(obj);
-            //}
+            _communicator.WriteLine(exportCount + " records to export with " + batches + " batches.");
+
+            for (int i = 0; i < batches; i++)
+            {
+                _communicator.Write("\rBatch " + i);
+
+                var startRow = (_definition.BatchSize * i);
+                var objs = _definition.SourceDataStore.Export(startRow, _definition.BatchSize);
+
+                foreach (var obj in objs)
+                {
+                    _definition.DestinationDataStore.Import(obj);
+                }
+            }
+            
         }
     }
 }

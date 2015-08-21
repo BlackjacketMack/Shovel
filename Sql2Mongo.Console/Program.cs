@@ -15,14 +15,10 @@ namespace Sql2Mongo.Command
     {
         static void Main(string[] args)
         {
-            var sql2Mongo = new Sql2Mongo();
-
 
             var definitionsJson = File.ReadAllText(ConfigurationManager.AppSettings["DefinitionFile"]);
 
             var definitions = deserializeDefinitions(definitionsJson);
-
-            //sql2Mongo.Process(null);
 
             foreach (var definition in definitions)
             {

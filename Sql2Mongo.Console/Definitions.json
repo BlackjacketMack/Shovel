@@ -1,9 +1,15 @@
 ﻿[
     {
         "Name": "My First Definition",
+        "BatchSize": 100,
+
+
+
+
         "SourceDataStore": {
             "DataStoreType": "SqlDataStore",
             "ConnectionStringName": "SqlServerConn",
+
 
             //this is the query that will be called against the source datastore.
             //should be ordered the same way every time
