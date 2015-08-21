@@ -2,6 +2,7 @@
     {
         "Name": "My First Definition",
         "BatchSize": 100,
+        "ThreadCount": 3,
 
 
 
@@ -28,7 +29,7 @@
             //if you need to transform the object at all, provide
             //an 'importquery' value with @propertyName for the fields
             //(e.g. {Foo:{FooName:"@propertyName"}}
-            "ImportQuery": null
+            "ImportQuery": "INSERT INTO testdb.Sql2MongoStuff VALUE ?"
         }
     }
 ]

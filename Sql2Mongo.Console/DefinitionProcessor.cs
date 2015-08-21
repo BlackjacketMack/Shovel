@@ -42,7 +42,6 @@ namespace Sql2Mongo.Command
                     _definition.DestinationDataStore.Import(obj);
                 }
             }
-            
         }
     }
 }

@@ -15,10 +15,22 @@ namespace Sql2Mongo.Command
     {
         static void Main(string[] args)
         {
+            IEnumerable<Definition> definitions = Enumerable.Empty<Definition>();
 
-            var definitionsJson = File.ReadAllText(ConfigurationManager.AppSettings["DefinitionFile"]);
+            try
+            {
+                definitions = initialize();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unable to initialize application.");
+                Console.WriteLine(ex.Message);
+            }
+            
 
-            var definitions = deserializeDefinitions(definitionsJson);
+            Console.WriteLine("Are you ready?");
+            Console.ReadLine();
+
 
             foreach (var definition in definitions)
             {
@@ -30,6 +42,23 @@ namespace Sql2Mongo.Command
             Console.ReadLine();
         }
 
+        private static IEnumerable<Definition> initialize()
+        {
+            var definitionPath = ConfigurationManager.AppSettings["DefinitionFile"];
+
+            if(definitionPath == null)
+            {
+                throw new ApplicationException("'DefinitionFile' must be specified.");
+            }
+
+            var definitionPathFull = Path.GetFullPath(definitionPath);
+
+            var definitionsJson = File.ReadAllText(definitionPathFull);
+
+            var definitions = deserializeDefinitions(definitionsJson);
+
+            return definitions;
+        }
 
         private static IEnumerable<Definition> deserializeDefinitions(string definitionsJson)
         {
@@ -47,30 +76,4 @@ namespace Sql2Mongo.Command
             definitionProcessor.Process();
         }
     }
-
-
-    //public class DataSourceConverter : JsonConverter
-    //{
-    //    public override bool CanConvert(Type objectType)
-    //    {
-    //        var b = objectType == typeof(IDataStore);
-
-    //        return b;
-    //    }
-
-    //    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-    //    {
-    //        return new SqlDataStore();
-    //    }
-
-    //    public override bool CanWrite
-    //    {
-    //        get { return false; }
-    //    }
-
-    //    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
 }
