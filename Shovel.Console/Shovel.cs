@@ -31,11 +31,12 @@ namespace Shovel.Command
 
             Console.WriteLine("Y'all ready for this?");
             Console.WriteLine("                     ");
-            Console.WriteLine("             /-----\\");
-            Console.WriteLine("|--|         |       \\");
-            Console.WriteLine("|  |=========|        >");
-            Console.WriteLine("|--|         |       /");
-            Console.WriteLine("             \\-----/");
+            Console.WriteLine("                 /-----\\");
+            Console.WriteLine("|--|             |       \\");
+            Console.WriteLine("|  |=============|        >");
+            Console.WriteLine("|--|             |       /");
+            Console.WriteLine("                 \\-----/");
+            Console.WriteLine("(press enter)");
             Console.ReadLine();
 
 

@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace Shovel.Core
 {
     public class DefinitionProcessor
     {
+        private const int RETRY_COUNT = 3;
+        private const int RETRY_WAITINSECONDS = 30;
         private Definition _definition;
         private ICommunicator _communicator;
 
@@ -28,14 +31,39 @@ namespace Shovel.Core
             var exportCount = _definition.SourceDataStore.ExportCountTotal();
             
 
-            var batches = (int)Math.Ceiling((double)exportCount / _definition.BatchSize);
+            var batchNumbers = (int)Math.Ceiling((double)exportCount / _definition.BatchSize);
 
-            _communicator.WriteLine(exportCount + " records to export with " + batches + " batches.");
+            _communicator.WriteLine("Process started at " + DateTime.UtcNow.ToLongDateString());
+            _communicator.WriteLine(exportCount + " records to export with " + batchNumbers + " batches.");
 
             Parallel.For(0,
-                            batches,
+                            batchNumbers,
                             new ParallelOptions { MaxDegreeOfParallelism = _definition.MaxDegreeOfParallelism },
-                            i => { exportAndImport(i); });
+                            //bn => exportAndImport(bn));
+                            bn => retry(() => exportAndImport(bn), RETRY_COUNT));
+        }
+
+        private void retry(Action original, int retryCount)
+        {
+            while (true)
+            {
+                try
+                {
+                    original();
+                    return;
+                }
+                catch (Exception e)
+                {
+                    if (retryCount == 0)
+                    {
+                        throw;
+                    }
+                    // TODO: Logging
+                    Thread.Sleep(TimeSpan.FromSeconds(RETRY_WAITINSECONDS));
+
+                    retryCount--;
+                }
+            }
         }
 
         private void exportAndImport(int batchNumber)
@@ -43,12 +71,12 @@ namespace Shovel.Core
             var startRow = (_definition.BatchSize * batchNumber);
 
             var objs = _definition.SourceDataStore.Export(startRow, _definition.BatchSize);
-            
+
             _definition.DestinationDataStore.Import(objs);
 
             _processedRecords += objs.Count();
 
-            _communicator.Write("\r Records Processed:" + _processedRecords);
+            _communicator.Write("\rRecords Processed:" + _processedRecords);
         }
     }
 }

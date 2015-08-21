@@ -47,7 +47,8 @@ namespace Shovel.Command
             }
 
             var task = collection.InsertManyAsync(bsons);
-            //task.Wait();
+            
+            task.Wait();
         }
 
 
