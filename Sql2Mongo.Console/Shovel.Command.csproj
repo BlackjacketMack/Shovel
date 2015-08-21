@@ -81,15 +81,9 @@
   <ItemGroup>
     <Compile Include="DataStores\MongoDataStore.cs" />
     <Compile Include="DataStores\BaseDataStore.cs" />
-    <Compile Include="DataStoreTypes.cs" />
     <Compile Include="Communicator.cs" />
-    <Compile Include="ICommunicator.cs" />
-    <Compile Include="DefinitionProcessor.cs" />
-    <Compile Include="DefinitionConverter.cs" />
-    <Compile Include="IDataStore.cs" />
-    <Compile Include="IDefinition.cs" />
     <Compile Include="DataStores\SqlDataStore.cs" />
-    <Compile Include="Definition.cs" />
+    <Compile Include="DefinitionConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -119,6 +113,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shovel.Core\Shovel.Core.csproj">
+      <Project>{59e65774-bb0b-4d35-8418-96dff1c835e3}</Project>
+      <Name>Shovel.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />

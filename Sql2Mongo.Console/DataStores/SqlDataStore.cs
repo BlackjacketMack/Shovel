@@ -10,6 +10,7 @@ using MongoDB.Bson.IO;
 using MongoDB.Bson;
 using Dapper;
 using System.Data.SqlClient;
+using Shovel.Core;
 
 namespace Shovel.Command
 {

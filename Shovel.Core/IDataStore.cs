@@ -4,14 +4,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Reflection;
-using MongoDB.Bson.Serialization;
-using MongoDB.Driver;
-using MongoDB.Bson.IO;
-using MongoDB.Bson;
 
-namespace Shovel.Command
+namespace Shovel.Core
 {
-    internal interface IDataStore
+    public interface IDataStore
     {
         string ConnectionStringName { get; set; }
         DataStoreTypes DataStoreType { get; set; }

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Shovel.Command
+namespace Shovel.Core
 {
-    internal class DefinitionProcessor
+    public class DefinitionProcessor
     {
         private Definition _definition;
         private ICommunicator _communicator;

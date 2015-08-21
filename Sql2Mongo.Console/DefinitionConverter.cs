@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Shovel.Core;
 
 namespace Shovel.Command
 {

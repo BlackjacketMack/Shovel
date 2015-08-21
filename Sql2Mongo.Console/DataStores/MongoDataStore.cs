@@ -9,6 +9,7 @@ using MongoDB.Driver;
 using System.Configuration;
 using Newtonsoft.Json;
 using MongoDB.Bson;
+using Shovel.Core;
 
 namespace Shovel.Command
 {

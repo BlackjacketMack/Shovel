@@ -9,6 +9,7 @@ using System.IO;
 
 using System.Configuration;
 using Newtonsoft.Json;
+using Shovel.Core;
 namespace Shovel.Command
 {
     public class Program

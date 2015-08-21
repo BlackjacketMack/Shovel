@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shovel.Command", "Sql2Mongo.Console\Shovel.Command.csproj", "{11C50D15-77C0-4DBB-80FC-2BF42495D1BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shovel.Core", "Shovel.Core\Shovel.Core.csproj", "{59E65774-BB0B-4D35-8418-96DFF1C835E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{11C50D15-77C0-4DBB-80FC-2BF42495D1BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11C50D15-77C0-4DBB-80FC-2BF42495D1BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11C50D15-77C0-4DBB-80FC-2BF42495D1BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59E65774-BB0B-4D35-8418-96DFF1C835E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59E65774-BB0B-4D35-8418-96DFF1C835E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59E65774-BB0B-4D35-8418-96DFF1C835E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59E65774-BB0B-4D35-8418-96DFF1C835E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

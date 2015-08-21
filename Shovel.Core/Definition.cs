@@ -4,15 +4,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Reflection;
-using MongoDB.Bson.Serialization;
-using MongoDB.Driver;
-using MongoDB.Bson.IO;
-using MongoDB.Bson;
-using Newtonsoft.Json;
 
-namespace Shovel.Command
+namespace Shovel.Core
 {
-    internal class Definition
+    public class Definition
     {
         public string Name { get; set; }
         public int BatchSize { get; set; }
