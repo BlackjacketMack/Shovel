@@ -7,7 +7,7 @@
 
             //this is the query that will be called against the source datastore.
             //should be ordered the same way every time
-            "ExportQuery": "SELECT * FROM Application.Events"
+            "ExportQuery": "SELECT Top 100 PERCENT * FROM Application.Events ORDER BY ApplicationEventID"
         },
         "DestinationDataStore": {
             "DataStoreType": "MongoDataStore",

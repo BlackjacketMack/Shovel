@@ -35,14 +35,14 @@ namespace Sql2Mongo.Command
             return q;
         }
 
-        public IEnumerable<object> Export()
+        public IEnumerable<object> Export(long startRow, long maxRows)
         {
-            var queryFormatted = formatQuery();
+            var exportSql = "SELECT * FROM (" + this.ExportQuery + ") t ORDER BY 1 OFFSET " + startRow + " ROWS FETCH NEXT " + maxRows + " ROWS ONLY";
 
             IEnumerable<object> q;
             using (var dbConnection = new SqlConnection(this.GetConnectionString()))
             {
-                q = dbConnection.Query(queryFormatted).ToList();
+                q = dbConnection.Query(exportSql).ToList();
             }
 
             return q;

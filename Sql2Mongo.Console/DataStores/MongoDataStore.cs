@@ -21,10 +21,6 @@ namespace Sql2Mongo.Command
         {
         }
 
-        public IEnumerable<object> Export()
-        {
-            throw new NotImplementedException();
-        }
 
         public long ExportCountTotal()
         {
@@ -42,6 +38,12 @@ namespace Sql2Mongo.Command
             var objSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
             var bson = BsonDocument.Parse(objSerialized);
             await collection.InsertOneAsync(bson);
+        }
+
+
+        public IEnumerable<object> Export(long startRow, long maxRows)
+        {
+            throw new NotImplementedException();
         }
     }
 }

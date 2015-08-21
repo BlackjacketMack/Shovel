@@ -26,7 +26,7 @@ namespace Sql2Mongo.Command
             var exportCount = _definition.SourceDataStore.ExportCountTotal();
             _communicator.WriteLine(exportCount + " records to export.");
 
-            var objs = _definition.SourceDataStore.Export();
+            var objs = _definition.SourceDataStore.Export(1, 10);
 
             //foreach (var obj in objs)
             //{

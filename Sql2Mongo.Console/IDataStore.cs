@@ -17,7 +17,7 @@ namespace Sql2Mongo.Command
         DataStoreTypes DataStoreType { get; set; }
 
         //exporting
-        IEnumerable<object> Export();
+        IEnumerable<object> Export(long startRow, long maxRows);
         long ExportCountTotal();
         string ExportQuery { get; set; }
 
