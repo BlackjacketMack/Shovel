@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 using Shovel.Core;
 namespace Shovel.Command
 {
-    public class Shovel
+    public class ShovelConsole
     {
         static void Main(string[] args)
         {
@@ -27,9 +27,15 @@ namespace Shovel.Command
                 Console.WriteLine("Unable to initialize application.");
                 Console.WriteLine(ex.Message);
             }
-            
+
 
             Console.WriteLine("Y'all ready for this?");
+            Console.WriteLine("                     ");
+            Console.WriteLine("             /-----\\");
+            Console.WriteLine("|--|         |       \\");
+            Console.WriteLine("|  |=========|        >");
+            Console.WriteLine("|--|         |       /");
+            Console.WriteLine("             \\-----/");
             Console.ReadLine();
 
 
