@@ -49,7 +49,7 @@ namespace Sql2Mongo.Command
             return this.ExportQuery;
         }
 
-        public void Import(object obj)
+        public void Import(IEnumerable<object> objs)
         {
             throw new NotImplementedException();
         }

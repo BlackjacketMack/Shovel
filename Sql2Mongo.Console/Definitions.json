@@ -2,10 +2,7 @@
     {
         "Name": "My First Definition",
         "BatchSize": 100,
-        "ThreadCount": 3,
-
-
-
+        "MaxDegreeOfParallelism": 3,
 
         "SourceDataStore": {
             "DataStoreType": "SqlDataStore",
@@ -22,7 +19,7 @@
 
 
             "DatabaseName": "testdb",
-            "CollectionName": "Sql2MongoStuff",
+            "CollectionName": "testexport",
 
             //with mongo db, if you don't specify an import query
             //the datastore will simply serialize the given object.

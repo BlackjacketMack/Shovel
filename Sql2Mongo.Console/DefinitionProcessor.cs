@@ -13,6 +13,8 @@ namespace Sql2Mongo.Command
         private Definition _definition;
         private ICommunicator _communicator;
 
+        private long _processedRecords;
+
         public DefinitionProcessor(Definition definition,ICommunicator communicator)
         {
             _definition = definition;
@@ -26,22 +28,33 @@ namespace Sql2Mongo.Command
             var exportCount = _definition.SourceDataStore.ExportCountTotal();
             
 
-            var batches = Math.Ceiling((double)exportCount / _definition.BatchSize);
+            var batches = (int)Math.Ceiling((double)exportCount / _definition.BatchSize);
 
             _communicator.WriteLine(exportCount + " records to export with " + batches + " batches.");
 
-            for (int i = 0; i < batches; i++)
-            {
-                _communicator.Write("\rBatch " + i);
+            Parallel.For(0,
+                            batches,
+                            new ParallelOptions { MaxDegreeOfParallelism = _definition.MaxDegreeOfParallelism },
+                            i => { exportAndImport(i); });
 
-                var startRow = (_definition.BatchSize * i);
-                var objs = _definition.SourceDataStore.Export(startRow, _definition.BatchSize);
+            //for (int i = 0; i < batches; i++)
+            //{
+            //    exportAndImport(i);
+            //}
 
-                foreach (var obj in objs)
-                {
-                    _definition.DestinationDataStore.Import(obj);
-                }
-            }
+        }
+
+        private void exportAndImport(int batchNumber)
+        {
+            _processedRecords += _definition.BatchSize;
+
+            _communicator.Write("\r Records Processed:" + _processedRecords);
+
+            var startRow = (_definition.BatchSize * batchNumber);
+
+            var objs = _definition.SourceDataStore.Export(startRow, _definition.BatchSize);
+            
+            _definition.DestinationDataStore.Import(objs);
         }
     }
 }

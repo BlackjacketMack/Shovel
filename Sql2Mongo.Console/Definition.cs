@@ -16,6 +16,7 @@ namespace Sql2Mongo.Command
     {
         public string Name { get; set; }
         public int BatchSize { get; set; }
+        public int MaxDegreeOfParallelism { get; set; }
 
         public IDataStore SourceDataStore { get; set; }
 

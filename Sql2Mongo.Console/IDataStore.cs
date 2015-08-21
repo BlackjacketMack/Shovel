@@ -22,7 +22,7 @@ namespace Sql2Mongo.Command
         string ExportQuery { get; set; }
 
         //importing
-        void Import(object obj);
+        void Import(IEnumerable<object> objs);
         string ImportQuery { get; set; }
     }
 }

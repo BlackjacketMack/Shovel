@@ -17,6 +17,8 @@ namespace Sql2Mongo.Command
         public string DatabaseName { get; set; }
         public string CollectionName { get; set; }
 
+        private static readonly MongoClient _mongoClient = new MongoClient();
+
         public MongoDataStore()
         {
         }
@@ -27,17 +29,24 @@ namespace Sql2Mongo.Command
             throw new NotImplementedException();
         }
 
-        public async void Import(object obj)
+        public void Import(IEnumerable<object> objs)
         {
             var connectionString = this.GetConnectionString();
 
-            var mongoClient = new MongoClient();
-            var db = mongoClient.GetDatabase(this.DatabaseName);
+            var db = _mongoClient.GetDatabase(this.DatabaseName);
             var collection = db.GetCollection<BsonDocument>(this.CollectionName);
 
-            var objSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
-            var bson = BsonDocument.Parse(objSerialized);
-            await collection.InsertOneAsync(bson);
+            var bsons = new List<BsonDocument>();
+            foreach (var obj in objs)
+            {
+                var objSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+                var bson = BsonDocument.Parse(objSerialized);
+
+                bsons.Add(bson);
+            }
+
+            var task = collection.InsertManyAsync(bsons);
+            task.Wait();
         }
 
 
