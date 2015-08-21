@@ -46,15 +46,25 @@ namespace Shovel.Core
 
         private void exportAndImport(int batchNumber)
         {
-            _processedRecords += _definition.BatchSize;
-
-            _communicator.Write("\r Records Processed:" + _processedRecords);
 
             var startRow = (_definition.BatchSize * batchNumber);
 
             var objs = _definition.SourceDataStore.Export(startRow, _definition.BatchSize);
             
             _definition.DestinationDataStore.Import(objs);
+
+            recordProcessedRecords(objs.Count());
+        }
+
+        private void recordProcessedRecords(int recordCount)
+        {
+            var oldProcessedRecords = _processedRecords;
+            _processedRecords += recordCount;
+
+            for (var i = oldProcessedRecords; i < _processedRecords; i++)
+            {
+                _communicator.Write("\rRecords Processed:" + i);
+            }
         }
     }
 }
