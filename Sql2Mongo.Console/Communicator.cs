@@ -8,18 +8,15 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Bson.IO;
 using MongoDB.Bson;
+using Newtonsoft.Json;
 
 namespace Sql2Mongo.Command
 {
-    internal interface IDataStore
+    public class Communicator : ICommunicator
     {
-        string ConnectionStringName { get; set; }
-        DataStoreTypes DataStoreType { get; set; }
-        //exporting
-        IEnumerable<object> Export();
-        long ExportCountTotal();
-
-        //importing
-        void Import(object obj);
+        public void WriteLine(string message)
+        {
+            Console.WriteLine(message);
+        }
     }
 }

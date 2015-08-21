@@ -8,17 +8,53 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Bson.IO;
 using MongoDB.Bson;
+using Dapper;
+using System.Data.SqlClient;
 
 namespace Sql2Mongo.Command
 {
     internal class SqlDataStore : BaseDataStore, IDataStore
     {
-        public IEnumerable<T> Get<T>()
+        public string ExportQuery { get; set; }
+        public long ExportCountTotal()
         {
-            throw new NotImplementedException();
+            var countSql = "SELECT Count_Big(*) AS ExportCount FROM (" + this.ExportQuery + ") t";
+
+            var count = query(countSql).First();
+
+            return (long)count.ExportCount;
         }
 
-        public void Insert(object obj)
+        private IEnumerable<dynamic> query(string sql,object parameters = null)
+        {
+            IEnumerable<object> q;
+            using (var dbConnection = new SqlConnection(this.GetConnectionString()))
+            {
+                q = dbConnection.Query(sql, parameters).ToList();
+            }
+
+            return q;
+        }
+
+        public IEnumerable<object> Export()
+        {
+            var queryFormatted = formatQuery();
+
+            IEnumerable<object> q;
+            using (var dbConnection = new SqlConnection(this.GetConnectionString()))
+            {
+                q = dbConnection.Query(queryFormatted).ToList();
+            }
+
+            return q;
+        }
+
+        private string formatQuery()
+        {
+            return this.ExportQuery;
+        }
+
+        public void Import(object obj)
         {
             throw new NotImplementedException();
         }

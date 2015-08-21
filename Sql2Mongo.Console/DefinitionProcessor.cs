@@ -11,14 +11,25 @@ namespace Sql2Mongo.Command
     internal class DefinitionProcessor
     {
         private Definition _definition;
-        public DefinitionProcessor(Definition definition)
+        private ICommunicator _communicator;
+
+        public DefinitionProcessor(Definition definition,ICommunicator communicator)
         {
             _definition = definition;
+            _communicator = communicator;
         }
 
         public void Process()
         {
-            _definition.DestinationDataStore.Insert(new { UserID = 4 });
+            var exportCount = _definition.SourceDataStore.ExportCountTotal();
+            _communicator.WriteLine(exportCount + " records to export.");
+
+            var objs = _definition.SourceDataStore.Export();
+
+            //foreach (var obj in objs)
+            //{
+            //    _definition.DestinationDataStore.Import(obj);
+            //}
         }
     }
 }

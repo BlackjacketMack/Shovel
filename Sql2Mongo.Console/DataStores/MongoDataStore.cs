@@ -6,9 +6,9 @@ using System.Linq;
 using System.Reflection;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
-using MongoDB.Bson.IO;
-using MongoDB.Bson;
 using System.Configuration;
+using Newtonsoft.Json;
+using MongoDB.Bson;
 
 namespace Sql2Mongo.Command
 {
@@ -21,27 +21,30 @@ namespace Sql2Mongo.Command
         {
         }
 
-        public IEnumerable<T> Get<T>()
+        public IEnumerable<object> Export()
         {
             throw new NotImplementedException();
         }
 
-        public async void Insert(object obj)
+        public long ExportCountTotal()
         {
-            var connectionString = getConnectionString();
+            throw new NotImplementedException();
+        }
+
+        public async void Import(object obj)
+        {
+            var connectionString = this.GetConnectionString();
 
             var mongoClient = new MongoClient();
             var db = mongoClient.GetDatabase(this.DatabaseName);
-            var collection = db.GetCollection<object>(this.CollectionName);
+            var collection = db.GetCollection<BsonDocument>(this.CollectionName);
 
-            await collection.InsertOneAsync(obj);
+            var objSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+            var bson = BsonDocument.Parse(objSerialized);
+            await collection.InsertOneAsync(bson);
         }
 
-        private string getConnectionString()
-        {
-            var connectionString = ConfigurationManager.ConnectionStrings[this.ConnectionStringName].ConnectionString;
 
-            return connectionString;
-        }
+        
     }
 }

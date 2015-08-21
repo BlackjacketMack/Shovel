@@ -47,7 +47,7 @@ namespace Sql2Mongo.Command
 
         private static void processDefinition(Definition definition)
         {
-            var definitionProcessor = new DefinitionProcessor(definition);
+            var definitionProcessor = new DefinitionProcessor(definition, new Communicator());
             definitionProcessor.Process();
         }
     }

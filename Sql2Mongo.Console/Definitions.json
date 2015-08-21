@@ -1,0 +1,17 @@
+﻿[
+	{
+		"Name":"My First Definition",
+		"SourceDataStore":{
+			"DataStoreType":"SqlDataStore",
+			"ConnectionStringName":"SqlServerConn",
+			"ExportQuery":"SELECT * FROM Application.Events"
+			},
+		"DestinationDataStore":{
+			"DataStoreType":"MongoDataStore",
+			"ConnectionStringName":"MongoDbConn",
+			"DatabaseName":"testdb",
+            "CollectionName": "Sql2MongoStuff",
+            "ExportQuery":"SELECT * FROM Application.Events"
+			}
+	}
+]

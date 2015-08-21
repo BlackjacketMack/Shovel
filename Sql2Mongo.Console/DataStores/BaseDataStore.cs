@@ -8,15 +8,21 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Bson.IO;
 using MongoDB.Bson;
+using System.Configuration;
 
 namespace Sql2Mongo.Command
 {
     /// <summary>
     /// Can't be abstract because we deserialize to this type.
     /// </summary>
-    internal class BaseDataStore
+    internal abstract class BaseDataStore
     {
         public DataStoreTypes DataStoreType { get; set; }
         public string ConnectionStringName { get; set; }
+
+        public string GetConnectionString()
+        {
+            return ConfigurationManager.ConnectionStrings[this.ConnectionStringName].ConnectionString;
+        }
     }
 }

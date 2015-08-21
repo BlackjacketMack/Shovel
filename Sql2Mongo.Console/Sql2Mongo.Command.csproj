@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="FluentValidationNA">
       <HintPath>..\packages\FluentValidationNA.1.2.16\lib\net40\FluentValidationNA.dll</HintPath>
     </Reference>
@@ -63,6 +66,8 @@
     <Compile Include="DataStores\MongoDataStore.cs" />
     <Compile Include="DataStores\BaseDataStore.cs" />
     <Compile Include="DataStoreTypes.cs" />
+    <Compile Include="Communicator.cs" />
+    <Compile Include="ICommunicator.cs" />
     <Compile Include="DefinitionProcessor.cs" />
     <Compile Include="DefinitionConverter.cs" />
     <Compile Include="IDataStore.cs" />
@@ -76,6 +81,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Definitions.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
