@@ -36,25 +36,19 @@ namespace Shovel.Core
                             batches,
                             new ParallelOptions { MaxDegreeOfParallelism = _definition.MaxDegreeOfParallelism },
                             i => { exportAndImport(i); });
-
-            //for (int i = 0; i < batches; i++)
-            //{
-            //    exportAndImport(i);
-            //}
-
         }
 
         private void exportAndImport(int batchNumber)
         {
-            _processedRecords += _definition.BatchSize;
-
-            _communicator.Write("\r Records Processed:" + _processedRecords);
-
             var startRow = (_definition.BatchSize * batchNumber);
 
             var objs = _definition.SourceDataStore.Export(startRow, _definition.BatchSize);
             
             _definition.DestinationDataStore.Import(objs);
+
+            _processedRecords += _definition.BatchSize;
+
+            _communicator.Write("\r Records Processed:" + _processedRecords);
         }
     }
 }
